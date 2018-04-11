@@ -1,0 +1,45 @@
+// px转rem
+@function px2rem ($px) {
+  $rem: 37.5px;
+  @return ($px / $rem) + rem;
+}
+// 背景图
+@mixin bg-image ($url) {
+  background-image: url($url + "@2x.png");
+  background-size: 100% 100%;
+  @media screen and (-webkit-min-device-pixel-ratio: 3), screen and (min-device-pixel-ratio: 3){
+    background-image: url($url + "@3x.png");
+    background-size: 100% 100%;
+  }
+}
+// icon
+@mixin bg-icon ($url) {
+  background-image: url($url + ".png");
+  background-size: 100% 100%;
+}
+// 1px border
+@mixin border ($px) {
+  border: $px solid #CCCCCC;
+  @media screen and (-webkit-min-device-pixel-ratio: 2) {
+      border: ($px/2)px solid #CCCCCC
+  }
+  @media screen and (-webkit-min-device-pixel-ratio: 3) {
+      border: ($px/3)px solid #CCCCCC
+  }
+}
+// 基础变量
+$color: #2196F3;
+$maxWidth: 540px;
+// html 最大宽度为540
+html{
+  width: 100%;
+  margin: 0 auto;
+  max-width: $maxWidth;
+}
+// 基础样式
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
