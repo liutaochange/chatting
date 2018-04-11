@@ -33,8 +33,16 @@ $maxWidth: 540px;
 // html 最大宽度为540
 html{
   width: 100%;
+  height: 100%;
   margin: 0 auto;
   max-width: $maxWidth;
+  font-size: 50px;
+}
+body{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font-size: px2rem(14px);
 }
 // 基础样式
 .fl{
@@ -42,4 +50,12 @@ html{
 }
 .fr{
   float: right;
+}
+// 公共样式
+.wraper{
+  width: 100%;
+  margin: 0 auto;
+  max-width: $maxWidth;
+  height: 100%;
+  position: relative;
 }

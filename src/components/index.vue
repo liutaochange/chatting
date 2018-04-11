@@ -1,5 +1,7 @@
 <template>
-  <div class="indexContent"></div>
+  <div class="wraper">
+
+  </div>
 </template>
 <script>
 
