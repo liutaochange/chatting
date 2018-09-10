@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from '@/components/index'
 import Login from '@/components/login'
 import Home from '@/components/home'
+import Sider from '@/components/slider'
 Vue.use(Router)
 
 export default new Router({
@@ -25,6 +26,11 @@ export default new Router({
       path: '/home',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/slider',
+      name: 'slider',
+      component: Slider
     }
   ]
 })
