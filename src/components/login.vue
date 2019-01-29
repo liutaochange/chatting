@@ -12,14 +12,12 @@
       <mu-button full-width color="secondary" class="m-login-btn" @click="handleLogin">登录</mu-button>
       <p class="m-login-text" @click="handleRegister">无账号，去注册</p>
     </div>
-    <mu-dialog title="提示" width="360" :open.sync="showFlag">
-      {{validateText}}
-      <mu-button slot="actions" flat color="secondary" @click="closeDialog">关闭</mu-button>
-    </mu-dialog>
+    <tips :color="bgColor" ref="tips">{{validateText}}</tips>
   </div>
 </template>
 <script>
 import { getUser } from '@/utils/store'
+import tips from '@/base/tips'
 export default {
   name: 'login',
   data() {
@@ -39,8 +37,8 @@ export default {
         username: '',
         password: ''
       },
-      showFlag: false,
-      validateText: ''
+      validateText: '',
+      bgColor: '#ff4081'
     }
   },
   methods: {
@@ -54,8 +52,11 @@ export default {
               this.$router.push({path: '/index', name: 'index'})
             } else {
               this.validateText = '账号或者密码有误'
-              this.showFlag = true
+              this.$refs.tips.show()
             }
+          } else {
+            this.validateText = '账号不存在'
+            this.$refs.tips.show()
           }
         }
       }).catch((error) => {
@@ -64,11 +65,13 @@ export default {
     },
     handleRegister() {
       this.$router.push({path: '/register', name: 'register'})
-    },
-    closeDialog() {
-      this.showFlag = false
-      this.validateText = ''
     }
+  },
+  components: {
+    tips
+  },
+  beforeDestroy() {
+    this.$refs.tips.hide()
   }
 }
 </script>
