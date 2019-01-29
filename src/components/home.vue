@@ -3,7 +3,7 @@
     <mu-paper :z-depth="1" class="home-list-wrap">
       <mu-list>
         <mu-sub-header>最近聊天记录</mu-sub-header>
-        <mu-list-item avatar button :ripple="false" v-for="(item, index) in history" :key="index" @click="handleItem(index)">
+        <mu-list-item avatar button :ripple="true" v-for="(item, index) in history" :key="index" @click="handleItem(index)">
           <mu-list-item-action>
             <mu-avatar>
               <img :src="item.avatar">
@@ -18,7 +18,7 @@
       <mu-divider></mu-divider>
       <mu-list>
         <mu-sub-header>客服</mu-sub-header>
-        <mu-list-item avatar button :ripple="false" v-for="(item, index) in service" :key="index" @click="handleService">
+        <mu-list-item avatar button :ripple="true" v-for="(item, index) in service" :key="index" @click="handleService">
           <mu-list-item-action>
             <mu-avatar>
               <img :src="item.avatar">
