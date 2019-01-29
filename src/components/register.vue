@@ -1,5 +1,5 @@
 <template>
-  <div class="login-wraper">
+  <div class="register-wraper">
     <div class="input-wamp">
       <mu-form ref="form" :model="validateForm" class="mu-demo-form">
         <mu-form-item label="账号" prop="username" :rules="usernameRules" label-float>
@@ -9,19 +9,15 @@
           <mu-text-field type="password" v-model="validateForm.password" prop="password" color="secondary" underline-color="secondary"></mu-text-field>
         </mu-form-item>
       </mu-form>
-      <mu-button full-width color="secondary" class="m-login-btn" @click="handleLogin">登录</mu-button>
-      <p class="m-login-text" @click="handleRegister">无账号，去注册</p>
+      <mu-button full-width color="secondary" class="m-login-btn" @click="handleRegister">注册</mu-button>
+      <p class="m-login-text" @click="handleLogin">已有账号， 去登录</p>
     </div>
-    <mu-dialog title="提示" width="360" :open.sync="showFlag">
-      {{validateText}}
-      <mu-button slot="actions" flat color="secondary" @click="closeDialog">关闭</mu-button>
-    </mu-dialog>
   </div>
 </template>
 <script>
-import { getUser } from '@/utils/store'
+import { saveUser } from '@/utils/store'
 export default {
-  name: 'login',
+  name: 'register',
   data() {
     return {
       usernameRules: [
@@ -38,42 +34,27 @@ export default {
       validateForm: {
         username: '',
         password: ''
-      },
-      showFlag: false,
-      validateText: ''
+      }
     }
   },
   methods: {
-    handleLogin() {
+    handleRegister() {
       this.$refs.form.validate().then((result) => {
         if (result) {
-          let userInfo = getUser()
-          if (userInfo) {
-            userInfo = JSON.parse(userInfo)
-            if (userInfo.username === this.validateForm.username && userInfo.password === this.validateForm.password) {
-              this.$router.push({path: '/index', name: 'index'})
-            } else {
-              this.validateText = '账号或者密码有误'
-              this.showFlag = true
-            }
-          }
+          saveUser(this.validateForm)
         }
       }).catch((error) => {
         console.log(error)
       })
     },
-    handleRegister() {
-      this.$router.push({path: '/register', name: 'register'})
-    },
-    closeDialog() {
-      this.showFlag = false
-      this.validateText = ''
+    handleLogin() {
+      this.$router.push({path: '/login', name: 'login'})
     }
   }
 }
 </script>
 <style lang="less" scoped>
-.login-wraper {
+.register-wraper {
   position: absolute;
   left: 0;
   top: 0;

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -11,6 +12,7 @@ export default new Router({
     {
       path: '/index',
       name: 'index',
+      redirect: '/home',
       component: () => import('@/components/index'),
       children: [
         {
@@ -29,6 +31,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: () => import('@/components/login')
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('@/components/register')
     }
   ]
 })
