@@ -1,0 +1,155 @@
+// Reset
+// --------------------------------------------------
+html {
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, figure, menu, //structural elements 结构元素
+dl, dt, dd, ul, ol, li, //list elements 列表元素
+pre, //text formatting elements 文本格式元素
+form, fieldset, legend, button, input, textarea, select, //form elements 表单元素
+th, td { //table elements 表格元素
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a {
+    background-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a:active {
+    outline: 0;
+}
+
+// 1. Correct `inline-block` display not defined in IE 8/9.
+// 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+//
+
+audio,
+canvas,
+progress,
+video {
+    display: inline-block; // 1
+    vertical-align: baseline; // 2
+}
+
+// Typography
+// --------------------------------------------------
+
+// 设置默认标题字体
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-size: 100%;
+}
+
+address,
+cite,
+dfn,
+em,
+i,
+var {
+    font-style: normal;
+}
+
+strong {
+    font-weight: normal;
+}
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace;
+    font-size: 14px;
+}
+
+// Lists
+// --------------------------------------------------
+
+// 重置列表元素
+// -------------------------
+// li元素的display为list-item，如果单独使用li会出现list-style，将li嵌套在ul或ol中则继承父元素的none
+
+ul,
+ol {
+    list-style: none;
+}
+
+// Forms
+// --------------------------------------------------
+button,
+html input[type="button"], // Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio` and `video` controls.
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; // Corrects inability to style clickable `input` types in iOS.
+}
+
+textarea {
+    overflow: hidden;
+    vertical-align: top;
+}
+
+input, textarea {
+    -webkit-appearance: none;
+}
+
+button,
+input,
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="tel"] {
+    font-family: inherit;
+    font-size: 100%;
+    border: none;
+    &:focus {
+        outline: none;
+    }
+}
+
+input[type="search"] {
+    -webkit-appearance: none;
+    box-sizing: content-box;
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+        display: none;
+    }
+    &:focus {
+        outline: none;
+    }
+}
+
+// 使得表单元素能继承字体和字体大小
+
+input:disabled, textarea:disabled {
+    color: #ceceec;
+}
+
+img {
+    border: none;
+    vertical-align: top;
+}
+
+// Tables
+// ==========================================================================
+
+//
+// Remove most spacing between table cells.
+//
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td,
+th {
+    padding: 0;
+}

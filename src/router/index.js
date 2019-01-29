@@ -11,17 +11,24 @@ export default new Router({
     {
       path: '/index',
       name: 'index',
-      component: () => import('@/components/index')
+      component: () => import('@/components/index'),
+      children: [
+        {
+          path: '/home',
+          name: 'home',
+          component: () => import('@/components/home')
+        },
+        {
+          path: '/mine',
+          name: 'mine',
+          component: () => import('@/components/mine')
+        }
+      ]
     },
     {
       path: '/login',
       name: 'login',
       component: () => import('@/components/login')
-    },
-    {
-      path: '/home',
-      name: 'home',
-      component: () => import('@/components/home')
     }
   ]
 })

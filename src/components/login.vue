@@ -9,8 +9,8 @@
 <script>
 
 </script>
-<style lang="scss" scoped>
-  @import "~assets/scss/common.scss";
+<style lang="less" scoped>
+  @import "~assets/less/common.less";
   .input-wamp{
     width: 68%;
     margin: 0 auto;

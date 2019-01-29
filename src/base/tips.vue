@@ -36,8 +36,8 @@
   }
 </script>
 
-<style scoped lang="scss">
-  @import "~assets/scss/common.scss";
+<style scoped lang="less">
+  @import "~assets/less/common.less";
 
   .top-tip{
     position: fixed;
@@ -55,8 +55,8 @@
     .top-center{
       width: 100%;
       margin: 0 auto;
-      max-width: $maxWidth;
-      background: $color;
+      max-width: @maxWidth;
+      background: @color;
       overflow: hidden;
     }
   }

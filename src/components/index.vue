@@ -1,61 +1,57 @@
 <template>
-  <div class="wraper">
-    <div class="demo-badge-container">
-      <mu-badge content="10" class="demo-icon-badge" circle secondary>
-        <mu-icon value="notifications"/>
-      </mu-badge>
-      <mu-badge content="12" circle secondary>
-        <mu-icon-button icon="notifications"/>
-      </mu-badge>
-      {{obj.a}}
-      <div>
-        {{routers}}
-      </div>
+  <div class="index-wrapper">
+    <router-view></router-view>
+    <div class="m-footer-wraper">
+      <mu-tabs :value.sync="active" color="secondary" full-width>
+        <mu-tab to="/home">
+          <mu-icon value="home"></mu-icon>主页
+        </mu-tab>
+        <mu-tab to="/mine">
+          <mu-icon value="account_box"></mu-icon>我的
+        </mu-tab>
+      </mu-tabs>
     </div>
-    <mu-raised-button label="Primary" class="demo-raised-button" primary @click="change"/>
   </div>
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
-      obj: {
-        a: 10,
-        routers: ''
-      }
+      active: 0
     }
   },
-  mounted () {
-    console.log('start mounted')
-  },
-  created () {
-    this.routers = this.username()
-    this.changeObj()
-  },
-  methods: {
-    changeObj () {
-      this.obj.a = 20
-    },
-    change () {
-      this.$set(this.obj, 'a', 30)
-      this.$router.push('/home')
-    },
-    username () {
-      // 我们很快就会看到 `params` 是什么
-      return this.$route.params.username
+  mounted() {},
+  created() {},
+  methods: {},
+  watch: {
+    '$route'(to, from) {
+      // 对路由变化作出响应...
+      console.log(to)
+      console.log(from)
     }
   }
 }
 </script>
-<style lang="scss" scoped>
-  .indexContent{
-    width: 100%;
+<style lang="less" scoped>
+.index-wrapper{
+  position: relative;
+  width: 100%;
+}
+.m-footer-wraper {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  .mu-tabs{
+    height: 50px;
+    .mu-tab{
+      height: 100%;
+    }
+    .mu-icon{
+      margin-bottom: 0 !important;
+      margin-top: -6px;
+    }
   }
-  .demo-badge-container{
-    padding-top: 24px;
-  }
-  .demo-icon-badge {
-    padding: 12px;
-    margin-right: 16px;
-  }
+}
 </style>
