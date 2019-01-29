@@ -3,6 +3,7 @@
     <div class="mine-avatar-wraper">
       <mu-avatar :size="50">
         <img :src="avatar">
+        <p v-if="userName">{{userName}}</p>
       </mu-avatar>
     </div>
     <mu-paper :z-depth="1" class="mine-list-wrap">
@@ -22,7 +23,7 @@
 </template>
 
 <script>
-import { clear } from '@/utils/store'
+import { clear, getUser } from '@/utils/store'
 export default {
   name: 'mine',
   data() {
@@ -45,7 +46,14 @@ export default {
           name: '清除缓存'
         }
       ],
-      avatar: require('@/assets/images/uicon.jpg')
+      avatar: require('@/assets/images/uicon.jpg'),
+      userName: ''
+    }
+  },
+  created() {
+    let userInfo = getUser()
+    if (userInfo) {
+      this.userName = JSON.parse(userInfo).userName
     }
   },
   methods: {

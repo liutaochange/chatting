@@ -11,22 +11,34 @@
         </mu-tab>
       </mu-tabs>
     </div>
+    <tips :color="bgColor" ref="tips">{{tipsText}}</tips>
   </div>
 </template>
 <script>
+import tips from '@/base/tips'
 export default {
   name: 'index',
   data() {
     return {
-      active: 0
+      active: 0,
+      tipsText: '',
+      bgColor: '#ff4081'
     }
   },
   mounted() {},
   created() {},
+  components: {
+    tips
+  },
   methods: {},
   watch: {
     '$route'(to, from) {
       // 对路由变化作出响应...
+      if (to.name === 'home') {
+        this.active = 0
+      } else if (to.name === 'mine') {
+        this.active = 1
+      }
       console.log(to)
       console.log(from)
     }

@@ -11,10 +11,12 @@
       </mu-form>
       <mu-button full-width color="secondary" class="m-login-btn" @click="handleRegister">注册</mu-button>
       <p class="m-login-text" @click="handleLogin">已有账号， 去登录</p>
+      <tips :color="bgColor" ref="tips">{{tipsText}}</tips>
     </div>
   </div>
 </template>
 <script>
+import tips from '@/base/tips'
 import { saveUser } from '@/utils/store'
 export default {
   name: 'register',
@@ -34,14 +36,24 @@ export default {
       validateForm: {
         username: '',
         password: ''
-      }
+      },
+      tipsText: '',
+      bgColor: '#ff4081'
     }
+  },
+  components: {
+    tips
   },
   methods: {
     handleRegister() {
       this.$refs.form.validate().then((result) => {
         if (result) {
           saveUser(this.validateForm)
+          this.tipsText = '登录成功'
+          this.$refs.tips.show()
+          setTimeout(() => {
+            this.$router.push({path: '/index', name: 'index'})
+          }, 2000)
         }
       }).catch((error) => {
         console.log(error)
@@ -50,6 +62,9 @@ export default {
     handleLogin() {
       this.$router.push({path: '/login', name: 'login'})
     }
+  },
+  beforeDestroy() {
+    this.$refs.tips.hide()
   }
 }
 </script>
