@@ -62,7 +62,7 @@ export default {
     },
     handleLogout() {
       clear()
-      this.$router.push({path: '/login', name: 'login'})
+      this.$router.push({path: '/login.html', name: 'login'})
     }
   }
 }

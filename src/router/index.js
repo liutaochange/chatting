@@ -7,35 +7,35 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/index'
+      redirect: '/index.html'
     },
     {
-      path: '/index',
+      path: '/index.html',
       name: 'index',
-      redirect: '/home',
-      component: () => import('@/components/index'),
+      redirect: '/home.html',
+      component: () => import('@/pages/index'),
       children: [
         {
-          path: '/home',
+          path: '/home.html',
           name: 'home',
-          component: () => import('@/components/home')
+          component: () => import('@/pages/home')
         },
         {
-          path: '/mine',
+          path: '/mine.html',
           name: 'mine',
-          component: () => import('@/components/mine')
+          component: () => import('@/pages/mine')
         }
       ]
     },
     {
-      path: '/login',
+      path: '/login.html',
       name: 'login',
-      component: () => import('@/components/login')
+      component: () => import('@/pages/login')
     },
     {
-      path: '/register',
+      path: '/register.html',
       name: 'register',
-      component: () => import('@/components/register')
+      component: () => import('@/pages/register')
     }
   ]
 })

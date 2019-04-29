@@ -49,7 +49,7 @@ export default {
           if (userInfo) {
             userInfo = JSON.parse(userInfo)
             if (userInfo.username === this.validateForm.username && userInfo.password === this.validateForm.password) {
-              this.$router.push({path: '/index', name: 'index'})
+              this.$router.push({path: '/index.html', name: 'index'})
             } else {
               this.validateText = '账号或者密码有误'
               this.$refs.tips.show()
@@ -64,7 +64,7 @@ export default {
       })
     },
     handleRegister() {
-      this.$router.push({path: '/register', name: 'register'})
+      this.$router.push({path: '/register.html', name: 'register'})
     }
   },
   components: {

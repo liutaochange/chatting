@@ -3,10 +3,10 @@
     <router-view></router-view>
     <div class="m-footer-wraper">
       <mu-tabs :value.sync="active" color="secondary" full-width>
-        <mu-tab to="/home">
+        <mu-tab to="/home.html">
           <mu-icon value="home"></mu-icon>主页
         </mu-tab>
-        <mu-tab to="/mine">
+        <mu-tab to="/mine.html">
           <mu-icon value="account_box"></mu-icon>我的
         </mu-tab>
       </mu-tabs>

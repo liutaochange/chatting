@@ -52,7 +52,7 @@ export default {
           this.tipsText = '登录成功'
           this.$refs.tips.show()
           setTimeout(() => {
-            this.$router.push({path: '/index', name: 'index'})
+            this.$router.push({path: '/index.html', name: 'index'})
           }, 2000)
         }
       }).catch((error) => {
@@ -60,7 +60,7 @@ export default {
       })
     },
     handleLogin() {
-      this.$router.push({path: '/login', name: 'login'})
+      this.$router.push({path: '/login.html', name: 'login'})
     }
   },
   beforeDestroy() {
