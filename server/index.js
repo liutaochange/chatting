@@ -79,4 +79,4 @@ app.use(router.routes()).use(router.allowedMethods())
 
 // socket.io 引入
 io.on('connection', () => { console.log('io connect success') })
-server.listen(3000)
+server.listen(3344)
