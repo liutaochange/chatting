@@ -65,7 +65,7 @@ router.post('/login', async ctx => {
         code: 0,
         data: {
           user: user,
-          type: result.type,
+          avator: result.avator,
           token
         },
         msg: '登录成功'

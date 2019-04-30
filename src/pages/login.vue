@@ -16,8 +16,9 @@
   </div>
 </template>
 <script>
-import { getUser } from '@/utils/store'
+import Store from '@/utils/store'
 import tips from '@/base/tips'
+import { login } from '@/api/index'
 export default {
   name: 'login',
   data() {
@@ -45,25 +46,29 @@ export default {
     handleLogin() {
       this.$refs.form.validate().then((result) => {
         if (result) {
-          let userInfo = getUser()
-          if (userInfo) {
-            userInfo = JSON.parse(userInfo)
-            if (userInfo.username === this.validateForm.username && userInfo.password === this.validateForm.password) {
-              this.$router.push({path: '/index.html', name: 'index'})
+          login(this.validateForm).then(res => {
+            if (res.code === 0) {
+              Store.set('__USER_INFO__', res)
+              this.tipsText = '登录成功'
+              this.$refs.tips.show()
+              setTimeout(() => {
+                this.$router.push({path: '/index.html', name: 'index'})
+              }, 2000)
             } else {
-              this.validateText = '账号或者密码有误'
+              this.validateText = res.msg
               this.$refs.tips.show()
             }
-          } else {
-            this.validateText = '账号不存在'
+          }).catch(() => {
+            this.validateText = '系统异常，请重试'
             this.$refs.tips.show()
-          }
+          })
         }
       }).catch((error) => {
         console.log(error)
       })
     },
     handleRegister() {
+      this.$refs.form.clear()
       this.$router.push({path: '/register.html', name: 'register'})
     }
   },

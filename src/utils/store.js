@@ -1,22 +1,16 @@
-const userKey = '__USERINFO__'
-export const saveUser = (value) => {
-  if (Object.prototype.toString.call(value) === '[object Object]') {
-    value = JSON.stringify(value)
-    if (localStorage.getItem(userKey)) {
-      localStorage.removeItem(userKey)
-    }
-    localStorage.setItem(userKey, value)
-  } else {
-    throw Error('localStorage params must be a object')
+import store from 'store'
+const storage = {
+  get: key => {
+    store.get(key)
+  },
+  set: (key, value) => {
+    store.set(key, value)
+  },
+  remove: key => {
+    store.remove(key)
+  },
+  clearAll: () => {
+    store.clearAll()
   }
 }
-
-export const getUser = () => localStorage.getItem(userKey)
-
-export const removeUser = () => {
-  localStorage.removeItem(userKey)
-}
-
-export const clear = () => {
-  localStorage.clear()
-}
+export default storage

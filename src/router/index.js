@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import 'muse-ui-message/dist/muse-ui-message.css'
+import Message from 'muse-ui-message'
 Vue.use(Router)
+Vue.use(Message)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -39,3 +42,15 @@ export default new Router({
     }
   ]
 })
+router.beforeEach((to, from, next) => {
+  if (to.name === 'mine') {
+    Message.alert('请先登录', '提示').then(res => {
+      if (res.result) {
+        router.push('/login.html')
+      }
+    })
+  } else {
+    next()
+  }
+})
+export default router

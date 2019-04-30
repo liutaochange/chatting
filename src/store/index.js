@@ -1,18 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import url from '@/api/index'
-import {set, get} from '@/assets/js/utils.js'
 const ROBOT_NAME = 'base-room'
 const ROBOT_URL = 'e9daf6c71e214db3bdaff6d3c2776246'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    userInfo: {
-      src: get('src'),
-      userid: get('userid')
-    },
-    isLogin: false,
     // 存放历史记录
     messhistory: {
       infos: [],
@@ -75,14 +69,6 @@ const store = new Vuex.Store({
       for (let i in value) {
         state.unRead[i] = +value[i]
       }
-    },
-    setLoginState(state, value) {
-      state.isLogin = value
-    },
-    setUserInfo(state, data) {
-      const {type, value} = data
-      set(type, value)
-      state.userInfo[type] = value
     },
     setEmoji(state, data) {
       state.emojiShow = data

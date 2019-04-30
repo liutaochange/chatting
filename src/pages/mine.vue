@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { clear, getUser } from '@/utils/store'
+import { mapState } from 'vuex'
 export default {
   name: 'mine',
   data() {
@@ -45,23 +45,17 @@ export default {
           value: 'replay',
           name: '清除缓存'
         }
-      ],
-      avatar: require('@/assets/images/uicon.jpg'),
-      userName: ''
+      ]
     }
   },
-  created() {
-    let userInfo = getUser()
-    if (userInfo) {
-      this.userName = JSON.parse(userInfo).userName
-    }
+  computed: {
+    ...mapState(['userInfo'])
   },
   methods: {
     handleItem(index) {
       console.log(index)
     },
     handleLogout() {
-      clear()
       this.$router.push({path: '/login.html', name: 'login'})
     }
   }

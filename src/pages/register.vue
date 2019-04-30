@@ -17,7 +17,9 @@
 </template>
 <script>
 import tips from '@/base/tips'
-import { saveUser } from '@/utils/store'
+import Store from '@/utils/store'
+import { register } from '@/api/index'
+import { randomNumber } from '@/utils/util'
 export default {
   name: 'register',
   data() {
@@ -38,7 +40,14 @@ export default {
         password: ''
       },
       tipsText: '',
-      bgColor: '#ff4081'
+      bgColor: '#ff4081',
+      avator: [
+        'https://web-blog.oss-cn-beijing.aliyuncs.com/avatar1.jpg',
+        'https://web-blog.oss-cn-beijing.aliyuncs.com/avatar2.jpg',
+        'https://web-blog.oss-cn-beijing.aliyuncs.com/avatar3.jpg',
+        'https://web-blog.oss-cn-beijing.aliyuncs.com/avatar4.jpg',
+        'https://web-blog.oss-cn-beijing.aliyuncs.com/avatar5.jpg'
+      ]
     }
   },
   components: {
@@ -48,18 +57,32 @@ export default {
     handleRegister() {
       this.$refs.form.validate().then((result) => {
         if (result) {
-          saveUser(this.validateForm)
-          this.tipsText = '登录成功'
-          this.$refs.tips.show()
-          setTimeout(() => {
-            this.$router.push({path: '/index.html', name: 'index'})
-          }, 2000)
+          register({
+            ...this.validateForm,
+            avator: this.avator[randomNumber(0, 5)]
+          }).then(res => {
+            if (res.code === 0) {
+              Store.set('__USER_INFO__', res)
+              this.tipsText = '注册成功'
+              this.$refs.tips.show()
+              setTimeout(() => {
+                this.$router.push({path: '/index.html', name: 'index'})
+              }, 2000)
+            } else {
+              this.validateText = res.msg
+              this.$refs.tips.show()
+            }
+          }).catch(() => {
+            this.validateText = '系统异常，请重试'
+            this.$refs.tips.show()
+          })
         }
       }).catch((error) => {
         console.log(error)
       })
     },
     handleLogin() {
+      this.$refs.form.clear()
       this.$router.push({path: '/login.html', name: 'login'})
     }
   },
