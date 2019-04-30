@@ -6,16 +6,16 @@ const jwt = require('jsonwebtoken')
 const screct = 'chatting'
 router.post('/register', async ctx => {
   const userInfo = ctx.request.body
-  if (userInfo && userInfo.user && userInfo.password && userInfo.type) {
-    let { user } = userInfo
-    let result = await userModel.findOne({ name: user }).exec()
+  if (userInfo && userInfo.username && userInfo.password && userInfo.avator) {
+    let { username } = userInfo
+    let result = await userModel.findOne({ name: username }).exec()
     if (!result) {
       // 生成token, secret作为密钥，expiresIn为失效时间，看情况，一般也不会太久
       const token = jwt.sign(userInfo, screct, { expiresIn: '5h' })
       // eslint-disable-next-line new-cap
       let newUser = new userModel({
         ...userInfo,
-        name: user,
+        name: username,
         token
       })
       let response = await newUser
@@ -24,8 +24,8 @@ router.post('/register', async ctx => {
           return {
             code: 0,
             data: {
-              user,
-              type: res.type,
+              username: res.name,
+              avator: res.avator,
               token: res.token
             }
           }
@@ -53,18 +53,19 @@ router.post('/register', async ctx => {
 })
 
 router.post('/login', async ctx => {
+  console.log(ctx.request.body)
   const userInfo = ctx.request.body
-  if (userInfo && userInfo.user && userInfo.password) {
-    let { user, password } = userInfo
-    let result = await userModel.findOne({ name: user }).exec()
-    if (result && result.name === user && result.password === password) {
+  if (userInfo && userInfo.username && userInfo.password) {
+    let { username, password } = userInfo
+    let result = await userModel.findOne({ name: username }).exec()
+    if (result && result.name === username && result.password === password) {
       // 生成token, secret作为密钥，expiresIn为失效时间，看情况，一般也不会太久
       const token = jwt.sign(userInfo, screct, { expiresIn: '5h' })
-      await userModel.findOneAndUpdate({name: user}, {token}).exec()
+      await userModel.findOneAndUpdate({name: username}, {token}).exec()
       ctx.body = {
         code: 0,
         data: {
-          user: user,
+          user: username,
           avator: result.avator,
           token
         },

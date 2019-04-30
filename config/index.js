@@ -10,8 +10,13 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
-
+    proxyTable: {
+      '/apis': {
+        target: 'http://localhost:3344',  // 接口域名
+        changeOrigin: true,  // 是否跨域
+        pathRewrite: { '^/apis': '' } // 需要rewrite重写
+      }      
+    },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 2233, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined

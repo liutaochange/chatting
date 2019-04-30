@@ -57,23 +57,24 @@ export default {
     handleRegister() {
       this.$refs.form.validate().then((result) => {
         if (result) {
-          register({
+          let params = {
             ...this.validateForm,
             avator: this.avator[randomNumber(0, 5)]
-          }).then(res => {
-            if (res.code === 0) {
-              Store.set('__USER_INFO__', res)
+          }
+          register(params).then(res => {
+            if (res.data.code === 0) {
+              Store.set('__USER_INFO__', res.data.data)
               this.tipsText = '注册成功'
               this.$refs.tips.show()
               setTimeout(() => {
                 this.$router.push({path: '/index.html', name: 'index'})
               }, 2000)
             } else {
-              this.validateText = res.msg
+              this.tipsText = res.data.msg
               this.$refs.tips.show()
             }
           }).catch(() => {
-            this.validateText = '系统异常，请重试'
+            this.tipsText = '系统异常，请重试'
             this.$refs.tips.show()
           })
         }

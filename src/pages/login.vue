@@ -47,15 +47,15 @@ export default {
       this.$refs.form.validate().then((result) => {
         if (result) {
           login(this.validateForm).then(res => {
-            if (res.code === 0) {
-              Store.set('__USER_INFO__', res)
-              this.tipsText = '登录成功'
+            if (res.data.code === 0) {
+              Store.set('__USER_INFO__', res.data.data)
+              this.validateText = '登录成功'
               this.$refs.tips.show()
               setTimeout(() => {
                 this.$router.push({path: '/index.html', name: 'index'})
               }, 2000)
             } else {
-              this.validateText = res.msg
+              this.validateText = res.data.msg
               this.$refs.tips.show()
             }
           }).catch(() => {
