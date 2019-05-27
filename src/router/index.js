@@ -6,6 +6,7 @@ Vue.use(Router)
 Vue.use(Message)
 
 const router = new Router({
+  base: process.env.NODE_ENV === 'production' ? '/chatting/' : '/',
   mode: 'history',
   routes: [
     {
