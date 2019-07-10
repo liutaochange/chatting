@@ -2,7 +2,7 @@
  * Created by LiuTao on 2018/4/10.
  */
 import axios from 'axios'
-import Store from '@//utils/store'
+import Store from '@/utils/store'
 import Vue from 'vue'
 import 'muse-ui-message/dist/muse-ui-message.css'
 import Message from 'muse-ui-message'
