@@ -39,8 +39,6 @@ export default {
       } else if (to.name === 'mine') {
         this.active = 1
       }
-      console.log(to)
-      console.log(from)
     }
   }
 }
