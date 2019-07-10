@@ -10,16 +10,15 @@ module.exports = {
     es6: true
   },
   extends: [
-    // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
-    // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
     "plugin:vue/essential",
-    // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-    "standard"
+    "eslint:recommended"
   ],
   // required to lint *.vue files
   plugins: ["html", "vue"],
   // add your custom rules here
   rules: {
+    "no-console": 0,
+    "no-undef": 0,
     // allow async-await
     "space-before-function-paren": ["error", "never"],
     "prettier/prettier": "0",
